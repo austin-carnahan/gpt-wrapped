@@ -24,9 +24,6 @@ Live demo: [https://austin-carnahan.github.io/gpt-wrapped/](https://austin-carna
 | Dependencies | Imported via **ESM CDNs** (jsDelivr) so we avoid bundlers & build pipelines. |
 | Build process | **None.** Commit → push → Pages deploys automatically. |
 
-Live demo: `https://<user>.github.io/gpt-wrapped/`
-
-> ⚠️ If you point a custom domain, add `CNAME`/`A` records and enable “Enforce HTTPS” in Pages settings.
 
 ---
 
