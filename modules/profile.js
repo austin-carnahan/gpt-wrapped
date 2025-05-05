@@ -1,7 +1,10 @@
 /* Calls the OpenAI Chat Completion API to generate the “Wrapped” profile
    and injects the returned title + blurb into the profile section. */
+   import { getApiKey } from './modules/key-helper.js';
 
    export async function renderProfile(messages, targetSel) {
+    const openaiKey = getApiKey('openaiKey', 'OpenAI API key');
+    if (!openaiKey) return;   // user cancelled
     // TODO: craft prompt, fetch OpenAI, parse JSON, update DOM
   }
 
