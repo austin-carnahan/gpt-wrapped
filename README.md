@@ -43,6 +43,7 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 
 ## 📁 File structure
 
+```
 .
 ├── index.html         # markup + section placeholders
 ├── styles.css         # minimal styling
@@ -55,7 +56,7 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
     └── sentiment.js   # HF sentiment model + pie/bar chart
     └── keyhelper.js   # Prompts user for an API key for services and stores locally
 
-
+```
 
 ## 🛠️ Local development
 
