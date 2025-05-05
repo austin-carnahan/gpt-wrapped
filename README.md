@@ -45,7 +45,7 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 ├── index.html         # markup + section placeholders
 ├── styles.css         # minimal styling
 ├── main.js            # orchestrator – handles upload, kicks off renders
-└── modules/           # feature modules (one per teammate)
+└── modules/           # feature modules
     ├── parser.js      # extracts user messages from export JSON
     ├── wordcloud.js   # freq table + d3-cloud rendering
     ├── timeline.js    # hourly histogram with Chart.js
