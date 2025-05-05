@@ -43,17 +43,18 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 
 ## 📁 File structure
 
-```
-├── index.html # markup + section placeholders
-├── styles.css # minimal styling
-├── main.js # orchestrator – handles upload, kicks off renders
-└── modules/ # feature modules (one per teammate)
-├── parser.js # extracts user messages from export JSON
-├── wordcloud.js # freq table + d3‑cloud rendering
-├── timeline.js # hourly histogram with Chart.js
-├── profile.js # OpenAI call + profile card
-└── sentiment.js # HF sentiment model + pie/bar chart
-```
+.
+├── index.html         # markup + section placeholders
+├── styles.css         # minimal styling
+├── main.js            # orchestrator – handles upload, kicks off renders
+└── modules/           # feature modules (one per teammate)
+    ├── parser.js      # extracts user messages from export JSON
+    ├── wordcloud.js   # freq table + d3-cloud rendering
+    ├── timeline.js    # hourly histogram with Chart.js
+    ├── profile.js     # OpenAI call + profile card
+    └── sentiment.js   # HF sentiment model + pie/bar chart
+    └── keyhelper.js   # Prompts user for an API key for services and stores locally
+
 
 
 ## 🛠️ Local development
