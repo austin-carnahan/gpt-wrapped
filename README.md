@@ -52,6 +52,12 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
     ├── profile.js     # OpenAI call + profile card
     └── sentiment.js   # HF sentiment model + pie/bar chart
     └── keyhelper.js   # Prompts user for an API key for services and stores locally
+└── sample_data/       # teammate chats for demo
+    ├── austin.conversations.json
+    ├── prachi.conversations.json
+    ├── yashwanth.conversations.json
+    ├── venkata.conversations.json
+
 
 ```
 
