@@ -1,7 +1,7 @@
 /* Uses a Hugging Face sentiment model (or Perspective API) to classify each
    prompt, then visualises the positive/neutral/negative split (e.g. pie chart). */
 
-  import { getApiKey } from './modules/keyhelper.js';
+  import { getApiKey } from './keyhelper.js';
   import Chart from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 
   export async function renderSentiment(messages, targetSel) {
