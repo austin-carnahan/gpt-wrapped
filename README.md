@@ -32,7 +32,7 @@ Live demo: [https://austin-carnahan.github.io/gpt-wrapped/](https://austin-carna
 | Tool | What it does | API / Model |
 |------|--------------|-------------|
 | **Sentiment Analysis** | Labels each prompt *positive / neutral / negative* → shown in a chart. | Hugging Face Inference API (`cardiffnlp/twitter-roberta-base-sentiment-latest`) |
-| **“Chat Character” Profile** | Generates the catchy title & blurb summarising your chat personality. | OpenAI Chat Completion API (`gpt-3.5-turbo`) |
+| **“Chat Character” Profile** | Generates the catchy title & blurb summarising your chat personality. | OpenAI Chat Completion API |
 
 Both calls run client‑side; you paste your API keys once and they stay in `localStorage`.
 
