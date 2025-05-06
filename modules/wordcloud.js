@@ -2,7 +2,7 @@
 
 import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
 // wordcloud.js
-import cloud from 'https://esm.sh/d3-cloud@1';
+// import d3Cloud from the appropriate CDN URL
 
 /** helper → { word: count }  */
 export function makeFreqTable(messages) {
