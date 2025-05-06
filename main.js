@@ -39,6 +39,8 @@ sampleButtons.forEach(btn => {
   btn.addEventListener('click', async () => {
     // UI highlight
     sampleButtons.forEach(b => b.classList.toggle('active', b === btn));
+    
+    console.log(`Loading sample file: ${btn.dataset.file}`);
 
     try {
       const path = btn.dataset.file;           // e.g. sample_data/austin.conversation.json
