@@ -78,6 +78,43 @@
   .export-link:hover {
     text-decoration: underline;
   }
+
+  /* ----- sample‑data buttons ----- */
+  .sample-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sample-label {
+    font-size: 0.95rem;
+    color: var(--clr-subtle);
+    margin-right: 0.5rem;
+  }
+
+  .sample-btn {
+    border: 2px solid var(--clr-accent);
+    background: transparent;
+    color: var(--clr-accent);
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .sample-btn:hover {
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .sample-btn.active {
+    background: var(--clr-accent);
+    color: #fff;
+  }
   
   /* ----------  Sections  ---------- */
   .section {
