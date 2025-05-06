@@ -65,4 +65,7 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 
 No Node needed – just open via a tiny server so ES‑modules load:
 
-TODO: Quick examples for serving on local machine
+```
+# From the project root (where index.html lives)
+python -m http.server 8000
+```
