@@ -1,6 +1,6 @@
 /* Builds the word‑frequency table and renders a d3‑cloud word cloud */
 
-import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
+//import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
 // wordcloud.js
 // import d3Cloud from the appropriate CDN URL
 

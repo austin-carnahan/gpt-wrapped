@@ -2,7 +2,7 @@
    prompt, then visualises the positive/neutral/negative split (e.g. pie chart). */
 
   import { getApiKey } from './keyhelper.js';
-  import Chart from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+  //import Chart from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 
   export async function renderSentiment(messages, targetSel) {
     // see profile.js for how to get the API key
