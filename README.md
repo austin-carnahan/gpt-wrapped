@@ -24,9 +24,6 @@ Live demo: [https://austin-carnahan.github.io/gpt-wrapped/](https://austin-carna
 | Dependencies | Imported via **ESM CDNs** (jsDelivr) so we avoid bundlers & build pipelines. |
 | Build process | **None.** Commit → push → Pages deploys automatically. |
 
-Live demo: `https://<user>.github.io/gpt-wrapped/`
-
-> ⚠️ If you point a custom domain, add `CNAME`/`A` records and enable “Enforce HTTPS” in Pages settings.
 
 ---
 
@@ -35,7 +32,7 @@ Live demo: `https://<user>.github.io/gpt-wrapped/`
 | Tool | What it does | API / Model |
 |------|--------------|-------------|
 | **Sentiment Analysis** | Labels each prompt *positive / neutral / negative* → shown in a chart. | Hugging Face Inference API (`cardiffnlp/twitter-roberta-base-sentiment-latest`) |
-| **“Chat Character” Profile** | Generates the catchy title & blurb summarising your chat personality. | OpenAI Chat Completion API (`gpt-3.5-turbo`) |
+| **“Chat Character” Profile** | Generates the catchy title & blurb summarising your chat personality. | OpenAI Chat Completion API |
 
 Both calls run client‑side; you paste your API keys once and they stay in `localStorage`.
 
@@ -48,7 +45,7 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 ├── index.html         # markup + section placeholders
 ├── styles.css         # minimal styling
 ├── main.js            # orchestrator – handles upload, kicks off renders
-└── modules/           # feature modules (one per teammate)
+└── modules/           # feature modules
     ├── parser.js      # extracts user messages from export JSON
     ├── wordcloud.js   # freq table + d3-cloud rendering
     ├── timeline.js    # hourly histogram with Chart.js
