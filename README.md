@@ -68,4 +68,8 @@ No Node needed – just open via a tiny server so ES‑modules load:
 ```
 # From the project root (where index.html lives)
 python -m http.server 8000
+
+# OR
+
+python3 -m http.server 8000
 ```
