@@ -1,7 +1,7 @@
 /* Main orchestrator: handles file upload, delegates to all render modules */
 
 import { getUserMessages }            from './modules/parser.js';
-import { makeFreqTable, renderWordCloud } from './modules/wordcloud.js';
+// import { makeFreqTable, renderWordCloud } from './modules/wordcloud.js';
 import { renderHourHistogram }        from './modules/timeline.js';
 import { renderProfile }              from './modules/profile.js';
 import { renderSentiment }            from './modules/sentiment.js';
@@ -19,7 +19,7 @@ async function processJson(text) {
   const messages = getUserMessages(chatData);
 
   renderProfile(messages, '#profile');
-  renderWordCloud(makeFreqTable(messages), '#wordcloud');
+  // renderWordCloud(makeFreqTable(messages), '#wordcloud');
   renderHourHistogram(messages, '#timeline');
   renderSentiment(messages, '#sentiment');
 
