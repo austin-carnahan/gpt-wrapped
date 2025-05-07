@@ -16,7 +16,8 @@ const fileInput       = document.getElementById('chatFile');
 // helper – central place to parse + trigger renders
 async function processJson(text) {
   chatData = JSON.parse(text);
-  const messages = getUserMessages(chatData);
+  const messages = getUserMessages(chatData.conversations || []);
+  console.log("✅ Parsed user messages:", messages);
 
 
 
