@@ -18,12 +18,12 @@ async function processJson(text) {
   chatData = JSON.parse(text);
   const messages = getUserMessages(chatData.conversations || []);
   console.log("✅ Parsed user messages:", messages);
-
+  console.log("Example message:", messages[0]);
 
 
   renderProfile(messages, '#profile');
   // renderWordCloud(makeFreqTable(messages), '#wordcloud');
-  renderHourHistogram(messages, '#timeline');
+  // renderHourHistogram(messages, '#timeline');
   renderSentiment(messages, '#sentiment');
 
   document.querySelectorAll('[data-placeholder]').forEach(el => el.remove());
@@ -58,3 +58,4 @@ sampleButtons.forEach(btn => {
     }
   });
 });
+
