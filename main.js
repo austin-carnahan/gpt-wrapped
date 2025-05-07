@@ -15,11 +15,18 @@ const fileInput       = document.getElementById('chatFile');
 
 // helper – central place to parse + trigger renders
 async function processJson(text) {
-  chatData = JSON.parse(text);
-  const messages = getUserMessages(chatData.conversations || []);
+  try {
+    chatData = JSON.parse(text);
+  } catch (err) {
+    console.error("❌ JSON Parse failed:", err.message);
+    alert("The file is not valid JSON.");
+    return;
+  }
+
+  console.log("Loaded raw chatData:", chatData);
+
+  const messages = getUserMessages(chatData.conversations || chatData || []);
   console.log("✅ Parsed user messages:", messages);
-
-
 
   renderProfile(messages, '#profile');
   // renderWordCloud(makeFreqTable(messages), '#wordcloud');
@@ -28,6 +35,8 @@ async function processJson(text) {
 
   document.querySelectorAll('[data-placeholder]').forEach(el => el.remove());
 }
+
+
 
 // 1) Upload via hidden file input
 fileInput.addEventListener('change', async e => {
