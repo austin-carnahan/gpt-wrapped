@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // wordcloud.js
 // Load d3 and d3-cloud via CDN in your HTML (not here)
 // If using stopword filter, uncomment import below for ES modules:
@@ -61,4 +62,11 @@ export function renderWordCloud(freqMap, targetSel) {
       )
       .text(d => d.text);
   }
+=======
+export function makeFreqTable(messages) {
+
+}
+export function makeWordCloud(freqTable) {
+  
+>>>>>>> 2c8a3df55cec34fc26c478a3e80a18564ae39964
 }
