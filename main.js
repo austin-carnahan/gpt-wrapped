@@ -30,6 +30,9 @@ async function processJson(text) {
 fileInput.addEventListener('change', async e => {
   const file = e.target.files?.[0];
   if (!file) return;
+
+  console.log(`Loading file: ${file.name}`);
+  
   try { processJson(await file.text()); }
   catch (err) { alert('Bad JSON'); console.error(err); }
 });
