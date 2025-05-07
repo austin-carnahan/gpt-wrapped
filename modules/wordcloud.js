@@ -1,56 +1,60 @@
-// import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
+// wordcloud.js
+// Builds the word-frequency table and renders a d3-cloud word cloud
 
+import { removeStopwords } from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
+import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
+import cloud from 'https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js';
+
+/** helper → { word: count } */
 export function makeFreqTable(messages) {
-  const text = messages.map(msg => msg.content || msg).join(' ');
-  const words = text.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
-  const filteredWords = stopWords.removeStopwords(words);
+  const text = messages.map(m => m.message || '').join(' ').toLowerCase();
+  const words = text.match(/\b[a-z]{3,}\b/g) || [];  // filter: 3+ letter words only
+  const filtered = removeStopwords(words);
 
   const freqMap = {};
-  filteredWords.forEach(word => {
-    if (!freqMap[word]) freqMap[word] = 0;
-    freqMap[word]++;
-  });
-
+  for (const word of filtered) {
+    freqMap[word] = (freqMap[word] || 0) + 1;
+  }
   return freqMap;
 }
-// import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
-// import cloud from 'https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js';
 
+/** draws the cloud inside the element matched by targetSel */
 export function renderWordCloud(freqMap, targetSel) {
-  const words = Object.entries(freqMap).map(([text, size]) => ({ text, size }));
-
-  const width = 500;
+  const width = 800;
   const height = 400;
 
-  d3.select(targetSel).selectAll('*').remove(); // clear previous SVG
+  const data = Object.entries(freqMap).map(([word, count]) => ({
+    text: word,
+    size: 10 + Math.sqrt(count) * 8 // scale size up with frequency
+  }));
 
-  const svg = d3.select(targetSel)
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+  // clear previous cloud
+  d3.select(targetSel).html('');
 
   cloud()
     .size([width, height])
-    .words(words)
+    .words(data)
     .padding(5)
-    .rotate(() => ~~(Math.random() * 2) * 90)
-    .font('Impact')
-    .fontSize(d => 10 + d.size)
+    .rotate(() => (Math.random() > 0.5 ? 90 : 0))
+    .fontSize(d => d.size)
     .on('end', draw)
     .start();
 
   function draw(words) {
-    svg.append('g')
+    d3.select(targetSel)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
       .attr('transform', `translate(${width / 2},${height / 2})`)
       .selectAll('text')
       .data(words)
       .enter()
       .append('text')
-      .style('font-family', 'Impact')
-      .style('font-size', d => d.size + 'px')
+      .style('font-size', d => `${d.size}px`)
       .style('fill', () => d3.schemeCategory10[Math.floor(Math.random() * 10)])
       .attr('text-anchor', 'middle')
-      .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
+      .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
       .text(d => d.text);
   }
 }
