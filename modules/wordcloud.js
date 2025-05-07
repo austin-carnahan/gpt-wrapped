@@ -1,11 +1,16 @@
-// wordcloud.js
-// Simplified — Step 1: No rendering, just structure and test message
-
 export function makeFreqTable(messages) {
-  console.log("hi im testing my codes");  // temporary debug message
-  return {}; // returns empty map for now
-}
+  const text = messages.map(m => m.message || '').join(' ').toLowerCase();
 
-export function renderWordCloud(freqMap, targetSel) {
-  console.log("hi im testing my codes");  // placeholder action
+  // Extract all words (3+ letters)
+  const words = text.match(/\b[a-z]{3,}\b/g) || [];
+
+  // Filter words containing "that"
+  const filtered = words.filter(word => word.includes('that'));
+
+  console.log("Words containing 'that':", filtered);
+
+  return filtered;
+}
+export function makeWordCloud(freqTable) {
+  
 }
