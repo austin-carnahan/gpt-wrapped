@@ -1,4 +1,4 @@
-import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
+// import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
 
 export function makeFreqTable(messages) {
   const text = messages.map(msg => msg.content || msg).join(' ');
@@ -13,8 +13,8 @@ export function makeFreqTable(messages) {
 
   return freqMap;
 }
-import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
-import cloud from 'https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js';
+// import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
+// import cloud from 'https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js';
 
 export function renderWordCloud(freqMap, targetSel) {
   const words = Object.entries(freqMap).map(([text, size]) => ({ text, size }));
