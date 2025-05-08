@@ -39,7 +39,6 @@ async function processJson(text) {
 }
 
 
-
 // 1) Upload via hidden file input
 fileInput.addEventListener('change', async e => {
   const file = e.target.files?.[0];
