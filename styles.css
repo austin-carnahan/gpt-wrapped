@@ -164,6 +164,14 @@
     line-height: 1.5;
     color: var(--clr-text);
   }
+
+  .profile-card canvas {
+    max-width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+  
   
   /* -----  Responsive tweaks  ----- */
   @media (min-width: 640px) {
@@ -187,6 +195,27 @@
     margin-right: auto;
     text-align: center;
   }
+  
+  .sentiment-box {
+    background: #000; /* true black */
+    padding: 1.75rem 2rem;
+    margin-top: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #333;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  
+  
+  
   
   
   

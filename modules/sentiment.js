@@ -1,4 +1,3 @@
-
 import { getApiKey } from './keyhelper.js';
 import {
   Chart,
@@ -14,7 +13,6 @@ Chart.register(ArcElement, Tooltip, Legend, Title, PieController);
 const HF_MODEL = 'cardiffnlp/twitter-roberta-base-sentiment';
 
 export async function renderSentiment(messages = [], targetSel) {
-  // ❌ Remove fallback — only use messages passed in
   if (!messages.length) {
     console.warn('No messages provided to renderSentiment.');
     return;
@@ -74,15 +72,17 @@ export async function renderSentiment(messages = [], targetSel) {
   heading.textContent = '💬 Sentiment Analysis';
   section.appendChild(heading);
 
-  const chartCard = document.createElement('div');
-  chartCard.className = 'profile-card';
+  const chartWrapper = document.createElement('div');
+  chartWrapper.className = 'sentiment-box';
 
   const canvas = document.createElement('canvas');
   canvas.width = 400;
   canvas.height = 400;
+  canvas.style.display = 'block';
+  canvas.style.margin = '0 auto';
 
-  chartCard.appendChild(canvas);
-  section.appendChild(chartCard);
+  chartWrapper.appendChild(canvas);
+  section.appendChild(chartWrapper);
 
   new Chart(canvas, {
     type: 'pie',
@@ -90,28 +90,44 @@ export async function renderSentiment(messages = [], targetSel) {
       labels: ['Positive 😊', 'Negative 😞', 'Neutral 😐'],
       datasets: [{
         data: [counts.positive, counts.negative, counts.neutral],
-        backgroundColor: ['#4ade80', '#f87171', '#fbbf24'],
-        borderColor: '#fff',
-        borderWidth: 2
+        backgroundColor: ['#4ade80', '#f87171', '#facc15'], // 💚 ❤️ 💛
+        borderColor: '#000',
+        borderWidth: 2,
+        borderRadius: 6,
+        hoverOffset: 15 // adds visual "pop"
       }]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
-          position: 'bottom',
+          position: 'right',
           labels: {
-            color: '#1f2937',
+            color: '#e5e7eb',
             font: {
               size: 14,
+              weight: 'bold',
               family: 'system-ui, sans-serif'
-            }
+            },
+            boxWidth: 12,
+            padding: 12,
+            usePointStyle: true,
+            pointStyle: 'circle'
           }
         },
         title: {
           display: false
         }
+      },
+      layout: {
+        padding: 5
+      },
+      animation: {
+        animateRotate: true,
+        animateScale: true
       }
     }
   });
 }
+
