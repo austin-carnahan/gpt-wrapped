@@ -78,7 +78,15 @@ Return JSON with two keys only:
     });
 
     const data = await res.json();
-    json = JSON.parse(data.choices[0].message.content);
+    let raw     = data.choices[0].message.content.trim();
+
+    // remove markdown fences if present
+    raw = raw.replace(/^```json\\s*|```$/gi, '').trim();
+
+    // grab substring starting from first {
+    const jsonText = raw.slice(raw.indexOf('{'));
+
+    json = JSON.parse(jsonText);
   } catch (err) {
     console.error('Profile generation failed:', err);
     showError(targetSel, '❌ Unable to generate profile, please try again.');
