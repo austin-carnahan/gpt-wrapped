@@ -206,8 +206,8 @@
   }
   
   .sentiment-box {
-    background: #000; /* true black */
-    padding: 1.75rem 2rem;
+    background: #000;
+    padding: 1.5rem 2rem;
     margin-top: 1.5rem;
     border-radius: 0.75rem;
     border: 1px solid #333;
@@ -215,13 +215,10 @@
     max-width: 540px;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    display: block;
+    overflow: hidden;
+    text-align: center;
   }
-  
   
   
   
