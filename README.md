@@ -8,6 +8,8 @@ Upload your exported `chat_history.json`, and the app instantly:
 - **Builds a word cloud** of your most‑used words.  
 - **Plots when you chat the most** (hour‑by‑hour histogram).  
 - **Breaks down sentiment** across your prompts.
+- Generate music
+- Generate meme of the day 
 
 All in the browser – no servers, no data leaves your machine.
 
@@ -47,6 +49,8 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 ├── main.js            # orchestrator – handles upload, kicks off renders
 └── modules/           # feature modules
     ├── parser.js      # extracts user messages from export JSON
+    ├── meme.js        # to generate the meme of the day
+    ├── music.js       # generate the music according to sentiment analysis
     ├── wordcloud.js   # freq table + d3-cloud rendering
     ├── timeline.js    # hourly histogram with Chart.js
     ├── profile.js     # OpenAI call + profile card
