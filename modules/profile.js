@@ -81,7 +81,7 @@ Return JSON with two keys only:
     json = JSON.parse(data.choices[0].message.content);
   } catch (err) {
     console.error('Profile generation failed:', err);
-    showError(targetSel, '❌ Unable to generate profile (see console).');
+    showError(targetSel, '❌ Unable to generate profile, please try again.');
     return;
   }
 
@@ -100,6 +100,7 @@ Return JSON with two keys only:
   /* clear whatever is there (placeholder or old card) */
   section.querySelector('[data-placeholder]')?.remove();
   section.querySelector('.profile-card')?.remove();
+  section.querySelector('.error-msg')?.remove(); 
 
   /* add the fresh card */
   section.appendChild(card);
@@ -107,6 +108,14 @@ Return JSON with two keys only:
   /* helper */
   function showError(sel, msg) {
     const el = document.querySelector(sel);
-    if (el) el.textContent = msg;
+    if (!el) return;
+  
+    // clear any previous profile card
+    el.querySelector('.profile-card')?.remove();
+    el.querySelector('.error-msg')?.remove();     // <‑‑ remove old error
+    const p = document.createElement('p');
+    p.className = 'error-msg';
+    p.textContent = msg;
+    el.appendChild(p);
   }
 }

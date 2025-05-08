@@ -13,28 +13,18 @@
       <p class="tagline">Turn your ChatGPT history into a personalised year‑in‑review.</p>
 
       <div class="uploader">
-        <!-- Styled label triggers the hidden file input -->
         <label for="chatFile" class="btn primary">Upload Chat Data</label>
-        <input
-          type="file"
-          id="chatFile"
-          accept=".json,application/json"
-          style="display: none;"
-        />
-
+        <input type="file" id="chatFile" accept=".json,application/json" style="display: none;" />
         <a
           href="https://help.openai.com/en/articles/7260999-how-do-i-export-my-chatgpt-history-and-data"
           target="_blank"
           rel="noopener noreferrer"
           class="export-link"
-          >How to export your ChatGPT data →</a
-        >
+        >How to export your ChatGPT data →</a>
       </div>
 
-      <!-- NEW sample‑data buttons -->
       <div class="sample-wrapper">
         <span class="sample-label">Experiment with our chat data:</span>
-
         <button class="sample-btn" data-file="sample_data/austin.conversations.json">📄 Austin's Chat</button>
         <button class="sample-btn" data-file="sample_data/prachi.conversations.json">📄 Prachi's Chat</button>
         <button class="sample-btn" data-file="sample_data/venkata.conversations.json">📄 Sanjana's Chat</button>
@@ -73,17 +63,18 @@
       <div class="placeholder" data-placeholder>
         <p>We’ll break down positive vs negative vibes once your history loads.</p>
       </div>
-    </section> 
+    </section>
+
     <!-- D3 Core -->
-      <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <!-- D3 Cloud from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.7/d3.layout.cloud.min.js"
-        integrity="sha512-hStpcyoo0rWEs2cG9t9yrzAXWstzZOjOvufYbBCIMvX4YG8kw7pU6/yUIrLup1COQQalrxels1cbJ/+X7GdYEA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      integrity="sha512-hStpcyoo0rWEs2cG9t9yrzAXWstzZOjOvufYbBCIMvX4YG8kw7pU6/yUIrLup1COQQalrxels1cbJ/+X7GdYEA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="main.js"></script> 
     
   </body>
 </html>

@@ -32,7 +32,11 @@ export function makeFreqTable(messages) {
 
   if (!words) return freqMap;
 
-  const filtered = removeStopwords(words);
+  const filtered = removeStopwords(words)
+    .filter(w =>
+      w.length > 2 &&    // skip tiny tokens
+      !/\d/.test(w)      // skip anything with a digit (UUID chunks, years)
+    );
 
   filtered.forEach(word => {
     freqMap[word] = (freqMap[word] || 0) + 1;
@@ -41,39 +45,46 @@ export function makeFreqTable(messages) {
   return freqMap;
 }
 
-/** Render randomized word cloud with 100+ words */
+/** Renders full word cloud like your sample image */
 export function renderWordCloud(freqMap, targetSel) {
-  const container = document.querySelector("#cloudContainer");
-  if (!container) return;
+  // 1. locate the <section> via targetSel
+  const section = document.querySelector(targetSel);
+  if (!section) return;
 
-  container.innerHTML = "";
+  // 2. remove the placeholder
+  section.querySelector('[data-placeholder]')?.remove();
+
+  // 3. find or create a container div inside the section
+  let container = section.querySelector('.wordcloud-box');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'wordcloud-box';
+    section.appendChild(container);
+  }
+  container.innerHTML = '';          // clear previous SVGs
 
   const width = 500;
-  const height = 300;
+  const height = 400;
 
-  // Get top 100 words
-  const words = Object.entries(freqMap)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 100)
-    .map(([text, count]) => ({
-      text,
-      size: 12 + Math.sqrt(count) * 8
-    }));
+  const words = Object.entries(freqMap).map(([text, count]) => ({
+    text,
+    size: 10 + Math.sqrt(count) * 15 // smoother scaling
+  }));
 
-  // Your curated color palette
   const colors = [
-    '#19747E', '#D1E8E2', '#A9D6E5', '#E2E2E2',
-    '#FF9F1C', '#CB997E', '#FFE8D6',
-    '#023E8A', '#0077B6', '#CAF0F8'
+    '#8B0000', '#D2691E', '#FF8C00', '#A0522D',
+    '#CD5C5C', '#8B4513', '#B22222', '#DC143C',
+    '#E9967A', '#A52A2A' // strong earthy tones like your image
   ];
 
   const layout = d3.layout.cloud()
     .size([width, height])
     .words(words)
-    .padding(5)
-    .rotate(() => (Math.random() > 0.1 ? 0 : 90)) // Random 0° or 90°
-    .font("Segoe UI")
+    .padding(2)
+    .rotate(() => ~~(Math.random() * 2) * 90) // 0° or 90°
+    .font("Impact")
     .fontSize(d => d.size)
+    .spiral("archimedean") // natural elliptical layout
     .on("end", draw);
 
   layout.start();
@@ -88,12 +99,15 @@ export function renderWordCloud(freqMap, targetSel) {
       .selectAll("text")
       .data(words)
       .enter().append("text")
-      .style("font-family", "Segoe UI, sans-serif")
+      .style("font-family", "Impact, sans-serif")
       .style("font-size", d => `${d.size}px`)
       .style("fill", () => colors[Math.floor(Math.random() * colors.length)])
       .attr("text-anchor", "middle")
       .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
       .text(d => d.text);
   }
-}
+} 
+
+
+
 
