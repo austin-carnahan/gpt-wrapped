@@ -192,3 +192,19 @@
       font-size: 2rem;
     }
   }
+
+  .wordcloud-box {
+    background: #0d0d0d;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-subtle);
+    margin-top: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  
+  
+  
