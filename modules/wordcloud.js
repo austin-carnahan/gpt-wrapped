@@ -1,23 +1,4 @@
-/* Builds the word‑frequency table and renders a d3‑cloud word cloud */
-
-//import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
-// wordcloud.js
-// import d3Cloud from the appropriate CDN URL
-
-// /** helper → { word: count }  */
-// export function makeFreqTable(messages) {
-//   // TODO: tokenise, drop stop‑words, build counts
-//   return {};
-// }
-
-// /** draws the cloud inside the element matched by targetSel */
-// export function renderWordCloud(freqMap, targetSel) {
-//   // TODO: use d3‑cloud, draw onto <canvas> or SVG
-// }
-
-// wordcloud.js
-
-//import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
+// import stopWords from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
 import { removeStopwords } from 'https://cdn.jsdelivr.net/npm/stopword/+esm';
 
 /** Builds frequency map: { word: count } */
@@ -45,7 +26,7 @@ export function makeFreqTable(messages) {
   return freqMap;
 }
 
-/** Renders full word cloud like your sample image */
+/** Renders full word cloud and top 5 word table */
 export function renderWordCloud(freqMap, targetSel) {
   // 1. locate the <section> via targetSel
   const section = document.querySelector(targetSel);
@@ -61,7 +42,7 @@ export function renderWordCloud(freqMap, targetSel) {
     container.className = 'wordcloud-box';
     section.appendChild(container);
   }
-  container.innerHTML = '';          // clear previous SVGs
+  container.innerHTML = ''; // clear previous SVGs
 
   const width = 500;
   const height = 400;
@@ -74,17 +55,17 @@ export function renderWordCloud(freqMap, targetSel) {
   const colors = [
     '#8B0000', '#D2691E', '#FF8C00', '#A0522D',
     '#CD5C5C', '#8B4513', '#B22222', '#DC143C',
-    '#E9967A', '#A52A2A' // strong earthy tones like your image
+    '#E9967A', '#A52A2A'
   ];
 
   const layout = d3.layout.cloud()
     .size([width, height])
     .words(words)
     .padding(2)
-    .rotate(() => ~~(Math.random() * 2) * 90) // 0° or 90°
+    .rotate(() => ~~(Math.random() * 2) * 90)
     .font("Impact")
     .fontSize(d => d.size)
-    .spiral("archimedean") // natural elliptical layout
+    .spiral("archimedean")
     .on("end", draw);
 
   layout.start();
@@ -106,8 +87,39 @@ export function renderWordCloud(freqMap, targetSel) {
       .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
       .text(d => d.text);
   }
-} 
 
+  // 4. Render Top 5 Words Table
+  const top5 = Object.entries(freqMap)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
 
+  const tableHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Word</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${top5.map(([word, count], i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${word}</td>
+            <td>${count}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
 
-
+  const tableContainer = document.getElementById('topWordsTable');
+  if (tableContainer) {
+    tableContainer.innerHTML = tableHTML;
+    const placeholder = tableContainer.previousElementSibling;
+    if (placeholder?.classList.contains('placeholder')) {
+      placeholder.remove();
+    }
+  }
+}
