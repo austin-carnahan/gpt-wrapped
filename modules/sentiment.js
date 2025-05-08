@@ -1,8 +1,7 @@
-import { getApiKey } from './keyhelper.js';
-import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm';
 
+import { getApiKey } from './keyhelper.js';
 import {
-  
+  Chart,
   ArcElement,
   Tooltip,
   Legend,
@@ -10,26 +9,16 @@ import {
   PieController
 } from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm';
 
-// Register pie chart-related components
 Chart.register(ArcElement, Tooltip, Legend, Title, PieController);
-
 
 const HF_MODEL = 'cardiffnlp/twitter-roberta-base-sentiment';
 
 export async function renderSentiment(messages = [], targetSel) {
-  /* ── TEMP fallback: load parsed sample if messages missing ───────── */
+  // ❌ Remove fallback — only use messages passed in
   if (!messages.length) {
-    try {
-      const res = await fetch(`sample_data/parsed_conversation.json?ts=${Date.now()}`);
-
-      if (res.ok) messages = await res.json(); // [{ message, timestamp }]
-      else throw new Error('Sample fetch failed');
-    } catch (err) {
-      console.warn('Sample profile JSON not found:', err.message);
-    }
+    console.warn('No messages provided to renderSentiment.');
+    return;
   }
-
-  if (!messages.length) return; // still nothing? bail
 
   const hfKey = getApiKey('hfKey', 'Hugging Face API key');
   if (!hfKey) return;
@@ -42,7 +31,7 @@ export async function renderSentiment(messages = [], targetSel) {
       continue;
     }
 
-    const input = m.message.slice(0, 500); // truncate for API
+    const input = m.message.slice(0, 500);
 
     try {
       const res = await fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
@@ -57,19 +46,15 @@ export async function renderSentiment(messages = [], targetSel) {
       const data = await res.json();
       console.log('🔎 Full API response:', data);
 
-
       if (!Array.isArray(data)) {
         console.warn('Unexpected response:', data);
         continue;
       }
 
-      //const topLabel = data.reduce((a, b) => (a.score > b.score ? a : b)).label;
       const labelSet = Array.isArray(data[0]) ? data[0] : data;
       const topLabel = labelSet.reduce((a, b) => (a.score > b.score ? a : b)).label;
 
-      console.log(`"${input}" → ${topLabel}`);
-
-
+      console.log(`📊 "${input}" → ${topLabel}`);
 
       if (topLabel === 'LABEL_2') counts.positive++;
       else if (topLabel === 'LABEL_0') counts.negative++;
@@ -85,14 +70,12 @@ export async function renderSentiment(messages = [], targetSel) {
 
   section.innerHTML = ''; // Clear previous content
 
-  // 👇 Keep existing heading intact
   const heading = document.createElement('h2');
-  heading.textContent = '💬 Sentiment Analysis'; // or whatever you like
+  heading.textContent = '💬 Sentiment Analysis';
   section.appendChild(heading);
 
-  // 👇 Wrap just the chart in a styled box
   const chartCard = document.createElement('div');
-  chartCard.className = 'profile-card'; // reuse same style for the box
+  chartCard.className = 'profile-card';
 
   const canvas = document.createElement('canvas');
   canvas.width = 400;
@@ -100,8 +83,6 @@ export async function renderSentiment(messages = [], targetSel) {
 
   chartCard.appendChild(canvas);
   section.appendChild(chartCard);
-
-
 
   new Chart(canvas, {
     type: 'pie',
@@ -120,7 +101,7 @@ export async function renderSentiment(messages = [], targetSel) {
         legend: {
           position: 'bottom',
           labels: {
-            color: '#1f2937', // match --clr-text
+            color: '#1f2937',
             font: {
               size: 14,
               family: 'system-ui, sans-serif'
