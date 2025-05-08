@@ -56,6 +56,7 @@
       <div class="placeholder" data-placeholder>
         <p>Word cloud will appear here once your data is processed.</p>
       </div>
+      <div id="cloudContainer" class="wordcloud-box"></div>
     </section>
 
     <!-- Histogram -->
@@ -72,8 +73,17 @@
       <div class="placeholder" data-placeholder>
         <p>We’ll break down positive vs negative vibes once your history loads.</p>
       </div>
-    </section>
+    </section> 
+    <!-- D3 Core -->
+      <script src="https://d3js.org/d3.v7.min.js"></script>
 
-    <script type="module" src="main.js"></script>
+    <!-- D3 Cloud from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.7/d3.layout.cloud.min.js"
+        integrity="sha512-hStpcyoo0rWEs2cG9t9yrzAXWstzZOjOvufYbBCIMvX4YG8kw7pU6/yUIrLup1COQQalrxels1cbJ/+X7GdYEA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script type="module" src="main.js"></script> 
+    
   </body>
 </html>
