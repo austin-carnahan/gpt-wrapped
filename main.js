@@ -20,7 +20,7 @@ async function processJson(text) {
   try {
     chatData = JSON.parse(text);
   } catch (err) {
-    console.error("❌ JSON Parse failed:", err.message);
+    console.error(" JSON Parse failed:", err.message);
     alert("The file is not valid JSON.");
     return;
   }
@@ -28,7 +28,7 @@ async function processJson(text) {
   console.log("Loaded raw chatData:", chatData);
 
   const messages = getUserMessages(chatData.conversations || chatData || []);
-  console.log("✅ Parsed user messages:", messages);
+  console.log(" Parsed user messages:", messages);
 
   renderProfile(messages, '#profile');
   renderWordCloud(makeFreqTable(messages), '#wordcloud');
