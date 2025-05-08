@@ -67,3 +67,10 @@ sampleButtons.forEach(btn => {
     }
   });
 });
+import { renderMeme } from './modules/meme.js';
+import { renderMoodMusic } from './modules/music.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderMeme('#meme-of-the-day');
+  renderMoodMusic('#mood-music', 'happy'); // Replace 'happy' with actual mood later
+});
