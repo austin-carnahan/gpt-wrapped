@@ -1,227 +1,210 @@
 /* ----------  Root Theme  ---------- */
 :root {
-  --clr-bg: #0d0d0d;
-  --clr-bg-alt: #1a1a1a;
-  --clr-text: #e5e7eb;
-  --clr-accent: #6366f1;
-  --clr-subtle: #9ca3af;
+  --clr-bg: #0d0d0d;         /* very dark background */
+  --clr-bg-alt: #1a1a1a;     /* slightly lighter for section contrast */
+  --clr-text: #e5e7eb;       /* light gray text for readability */
+  --clr-accent: #6366f1;     /* keep accent color for buttons/links */
+  --clr-subtle: #9ca3af;     /* muted gray for subtle text */
   --radius: 0.75rem;
 }
-
-/* ----------  Global Reset  ---------- */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  background: var(--clr-bg);
-  color: var(--clr-text);
-  line-height: 1.6;
-}
-
-/* ----------  Header  ---------- */
-.site-header {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.site-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.tagline {
-  font-size: 1.125rem;
-  color: var(--clr-subtle);
-  margin-bottom: 2rem;
-}
-
-.uploader {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn {
-  cursor: pointer;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.btn.primary {
-  background: var(--clr-accent);
-  color: #fff;
-}
-
-.btn.primary:hover {
-  background: #4f51e5;
-}
-
-.export-link {
-  align-self: center;
-  color: var(--clr-accent);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.export-link:hover {
-  text-decoration: underline;
-}
-
-/* ----- sample‑data buttons ----- */
-.sample-wrapper {
-  margin-top: 2rem;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.sample-label {
-  font-size: 0.95rem;
-  color: var(--clr-subtle);
-  margin-right: 0.5rem;
-}
-
-.sample-btn {
-  border: 2px solid var(--clr-accent);
-  background: transparent;
-  color: var(--clr-accent);
-  padding: 0.5rem 0.9rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background 0.2s;
-  font-size: 0.9rem;
-}
-
-.sample-btn:hover {
-  background: rgba(99, 102, 241, 0.1);
-}
-
-.sample-btn.active {
-  background: var(--clr-accent);
-  color: #fff;
-}
-
-/* ----------  Sections  ---------- */
-.section {
-  padding: 4rem 1rem;
-}
-
-.section.alt {
-  background: var(--clr-bg-alt);
-}
-
-.section h2 {
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.placeholder {
-  margin: 0 auto;
-  max-width: 32rem;
-  padding: 2rem;
-  border: 2px dashed var(--clr-subtle);
-  border-radius: var(--radius);
-  text-align: center;
-  color: var(--clr-subtle);
-  font-style: italic;
-}
-
-/* ----- profile card ----- */
-.profile-card {
-  max-width: 28rem;
-  margin: 0 auto;
-  background: #1a1a1a;
-  padding: 2rem 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  text-align: center;
-}
-
-.profile-card h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--clr-accent);
-}
-
-.profile-card p {
-  margin-top: 0.75rem;
-  line-height: 1.5;
-  color: var(--clr-text);
-}
-
-/* ----------  Word Cloud Styling  ---------- */
-.wordcloud-box {
-  background: #0d0d0d;
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--clr-subtle);
-  margin-top: 1.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-/* ----------  Top Words Table  ---------- */
-.top-words-table {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.top-words-table table {
-  margin: 0 auto;
-  border-collapse: collapse;
-  font-size: 1rem;
-  background: #1a1a1a;
-  color: var(--clr-text);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.top-words-table th,
-.top-words-table td {
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid #333;
-}
-
-.top-words-table th {
-  background: var(--clr-accent);
-  color: #fff;
-  font-weight: 600;
-}
-
-.top-words-table tr:last-child td {
-  border-bottom: none;
-}
-
-
-
-
-
-/* ----------  Responsive tweaks  ---------- */
-@media (min-width: 640px) {
+  
+  /* ----------  Global Reset  ---------- */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html,
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    line-height: 1.6;
+  }
+  
+  /* ----------  Header  ---------- */
+  .site-header {
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  
   .site-header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tagline {
+    font-size: 1.125rem;
+    color: var(--clr-subtle);
+    margin-bottom: 2rem;
+  }
+  
+  .uploader {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    cursor: pointer;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  
+  .btn.primary {
+    background: var(--clr-accent);
+    color: #fff;
+  }
+  
+  .btn.primary:hover {
+    background: #4f51e5;
+  }
+  
+  .export-link {
+    align-self: center;
+    color: var(--clr-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .export-link:hover {
+    text-decoration: underline;
   }
 
-  .section h2 {
-    font-size: 2rem;
+  /* ----- sample‑data buttons ----- */
+  .sample-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
   }
-}
+
+  .sample-label {
+    font-size: 0.95rem;
+    color: var(--clr-subtle);
+    margin-right: 0.5rem;
+  }
+
+  .sample-btn {
+    border: 2px solid var(--clr-accent);
+    background: transparent;
+    color: var(--clr-accent);
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .sample-btn:hover {
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .sample-btn.active {
+    background: var(--clr-accent);
+    color: #fff;
+  }
+  
+  /* ----------  Sections  ---------- */
+  .section {
+    padding: 4rem 1rem;
+  }
+  
+  .section.alt {
+    background: var(--clr-bg-alt);
+  }
+  
+  .section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .placeholder {
+    margin: 0 auto;
+    max-width: 32rem;
+    padding: 2rem;
+    border: 2px dashed var(--clr-subtle);
+    border-radius: var(--radius);
+    text-align: center;
+    color: var(--clr-subtle);
+    font-style: italic;
+  }
+
+  /* ----- profile card ----- */
+  .profile-card {
+    max-width: 28rem;
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+
+  .profile-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-accent);
+  }
+
+  .profile-card p {
+    margin-top: 0.75rem;
+    line-height: 1.5;
+    color: var(--clr-text);
+  }
+
+  /* ----- timeline card (matches profile style, a bit wider) ----- */
+  .timeline-card {
+    max-width: 32rem;            /* a touch wider than profile */
+    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  /* ensure the bar chart scales nicely */
+  .timeline-card canvas {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* -----  Responsive tweaks  ----- */
+  @media (min-width: 640px) {
+    .site-header h1 {
+      font-size: 3rem;
+    }
+  
+    .section h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .wordcloud-box {
+    background: #0d0d0d;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-subtle);
+    margin-top: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  
+  
+  
