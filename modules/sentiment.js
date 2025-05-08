@@ -156,6 +156,25 @@ export async function renderSentiment(messages = [], targetSel) {
   const hfKey = getApiKey('hfKey', 'Hugging Face API key');
   if (!hfKey) return;
 
+  /* ---------------- Loading indicator ---------------- */
+  const section = document.querySelector(targetSel);
+  if (!section) return;
+  section.querySelector('[data-placeholder]')?.remove();
+
+  // Remove old loader if present
+  section.querySelector('p.loading')?.remove();
+
+  // Remove placeholder
+  section.querySelector('[data-placeholder]')?.remove();
+
+  const loader = document.createElement('p');
+  loader.className = 'loading';
+  loader.textContent = '⏳ Analyzing sentiment…';
+  loader.style.textAlign = 'center';
+  loader.style.fontStyle = 'italic';
+  section.appendChild(loader);
+
+
   const counts = { positive: 0, negative: 0, neutral: 0 };
 
   function generateSentimentComment(p, n, z) {
@@ -218,8 +237,7 @@ export async function renderSentiment(messages = [], targetSel) {
   }
 
     // --- DOM ---
-    const section = document.querySelector(targetSel);
-    if (!section) return;
+    loader.remove();              // remove “Analyzing…” message
     section.innerHTML = '';
   
     const heading = document.createElement('h2');
