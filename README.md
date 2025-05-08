@@ -47,6 +47,8 @@ Both calls run client‑side; you paste your API keys once and they stay in `loc
 ├── main.js            # orchestrator – handles upload, kicks off renders
 └── modules/           # feature modules
     ├── parser.js      # extracts user messages from export JSON
+    ├── meme.js        # to generate the meme of the day
+    ├── music.js       # generate the music according to sentiment analysis
     ├── wordcloud.js   # freq table + d3-cloud rendering
     ├── timeline.js    # hourly histogram with Chart.js
     ├── profile.js     # OpenAI call + profile card
