@@ -32,7 +32,11 @@ export function makeFreqTable(messages) {
 
   if (!words) return freqMap;
 
-  const filtered = removeStopwords(words);
+  const filtered = removeStopwords(words)
+    .filter(w =>
+      w.length > 2 &&    // skip tiny tokens
+      !/\d/.test(w)      // skip anything with a digit (UUID chunks, years)
+    );
 
   filtered.forEach(word => {
     freqMap[word] = (freqMap[word] || 0) + 1;
@@ -43,10 +47,21 @@ export function makeFreqTable(messages) {
 
 /** Render randomized word cloud with 100+ words */
 export function renderWordCloud(freqMap, targetSel) {
-  const container = document.querySelector("#cloudContainer");
-  if (!container) return;
+  // 1. locate the <section> via targetSel
+  const section = document.querySelector(targetSel);
+  if (!section) return;
 
-  container.innerHTML = "";
+  // 2. remove the placeholder
+  section.querySelector('[data-placeholder]')?.remove();
+
+  // 3. find or create a container div inside the section
+  let container = section.querySelector('.wordcloud-box');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'wordcloud-box';
+    section.appendChild(container);
+  }
+  container.innerHTML = '';          // clear previous SVGs
 
   const width = 500;
   const height = 300;
