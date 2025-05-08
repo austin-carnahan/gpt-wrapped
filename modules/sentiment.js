@@ -159,11 +159,10 @@ export async function renderSentiment(messages = [], targetSel) {
   /* ---------------- Loading indicator ---------------- */
   const section = document.querySelector(targetSel);
   if (!section) return;
-  section.querySelector('[data-placeholder]')?.remove();
 
   // Remove old loader if present
   section.querySelector('p.loading')?.remove();
-
+  section.querySelector('div.sentiment-box')?.remove();
   // Remove placeholder
   section.querySelector('[data-placeholder]')?.remove();
 
