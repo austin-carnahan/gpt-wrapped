@@ -8,6 +8,8 @@ Upload your exported `chat_history.json`, and the app instantly:
 - **Builds a word cloud** of your most‑used words.  
 - **Plots when you chat the most** (hour‑by‑hour histogram).  
 - **Breaks down sentiment** across your prompts.
+- **Generate music
+- ** Generate meme of the day 
 
 All in the browser – no servers, no data leaves your machine.
 
