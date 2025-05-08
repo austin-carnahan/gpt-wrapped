@@ -1,12 +1,12 @@
 /* ----------  Root Theme  ---------- */
 :root {
-    --clr-bg: #ffffff;
-    --clr-bg-alt: #f7f9fc;
-    --clr-text: #1f2937;
-    --clr-accent: #6366f1;
-    --clr-subtle: #6b7280;
-    --radius: 0.75rem;
-  }
+  --clr-bg: #0d0d0d;         /* very dark background */
+  --clr-bg-alt: #1a1a1a;     /* slightly lighter for section contrast */
+  --clr-text: #e5e7eb;       /* light gray text for readability */
+  --clr-accent: #6366f1;     /* keep accent color for buttons/links */
+  --clr-subtle: #9ca3af;     /* muted gray for subtle text */
+  --radius: 0.75rem;
+}
   
   /* ----------  Global Reset  ---------- */
   * {
@@ -146,7 +146,7 @@
   .profile-card {
     max-width: 28rem;
     margin: 0 auto;
-    background: #fff;
+    background: #1a1a1a;
     padding: 2rem 1.5rem;
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
